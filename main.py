@@ -40,11 +40,14 @@ for table in tables:
         # merging cells content
         content = []
         for i in xrange(0, len(data)):
+            if not ( u'案件號碼' in data[i] or u'案件編號' in data[i]):
+                continue
             if content == [] or \
-                ( '案件號碼' in data[i-1] and data[i-1]['案件號碼'] != data[i]['案件號碼'] ) or \
-                ( '案件編號' in data[i-1] and data[i-1]['案件編號'] != data[i]['案件編號'] ):
+                ( u'案件號碼' in data[i-1] and data[i-1][u'案件號碼'].strip() != data[i][u'案件號碼'].strip() ) or \
+                ( u'案件編號' in data[i-1] and data[i-1][u'案件編號'].strip() != data[i][u'案件編號'].strip() ):
                 content.append(data[i])
             else:
+                #print data[i-1][u'案件編號'].strip() != data[i][u'案件編號'].strip()
                 for k, v in data[i].iteritems():
                     if data[i-1][k] != data[i][k]:
                         content[-1][k] += data[i][k]
