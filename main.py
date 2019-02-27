@@ -51,7 +51,6 @@ class CourtParser:
             data.append({})
             raw_data[i] = self.unique (raw_data[i])   # handle colspan here
             for j in xrange(0, len(raw_data[i])):       
-                print j, raw_data[i][j]
                 data[i][self.headers[j]] = raw_data[i][j]
 
         # mergeing cells content if the case no. is the same
