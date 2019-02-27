@@ -63,10 +63,9 @@ class CourtParser:
                 ( u'案件編號' in data[i] and content[-1][u'案件編號'].strip() != data[i][u'案件編號'].strip() and content[-1][u'案件編號'].strip().strip(u'─') != '' ):
                 content.append(data[i])
             else:
-                print json.dumps(content[-1], ensure_ascii=False, indent=4)
-                print json.dumps(data[i], ensure_ascii=False, indent=4)
+                #print json.dumps(content[-1], ensure_ascii=False, indent=4)
+                #print json.dumps(data[i], ensure_ascii=False, indent=4)
                 for k, v in data[i].iteritems():
-                    print k
                     if content[-1][k] != data[i][k]:
                         content[-1][k] += data[i][k]
 
