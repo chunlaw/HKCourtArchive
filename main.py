@@ -50,6 +50,8 @@ class CourtParser:
         for i in xrange(0,len(raw_data)):
             data.append({})
             raw_data[i] = self.unique (raw_data[i])   # handle colspan here
+            if len(self.headers) != len(raw_data[i]): # skip unformat row, likely to be the ending row
+                continue
             for j in xrange(0, len(raw_data[i])):       
                 data[i][self.headers[j]] = raw_data[i][j]
 
@@ -87,7 +89,7 @@ class CourtParser:
 
     def unique(self, sequence):
         ret = [sequence[i] for i in xrange(1,len(sequence)) if not ( sequence[i-1] == sequence[i] )]
-        return [sequence[1]] + ret
+        return [sequence[0]] + ret
 
 codes = ["cfa","cacfi","hcmc","mcl","bp","clpi","clcmc","crhpi","cwup","mia","otd","o14","ct","lands","dc","dcmc","etnmag","kcmag","ktmag","wkmag","stmag","flmag","tmmag","crc","lt","smt","oat"]
 special_codes = ['fmc'] # TODO handle this
